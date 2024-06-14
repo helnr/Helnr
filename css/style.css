@@ -16,6 +16,7 @@
 }
 
 body {
+    background-color: #eee;
     font-family: Cairo, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -48,23 +49,30 @@ body {
 }
 
 .top-header-out {
-    box-shadow: 0px -15px 15px 10px #aaa;
+    background-color: white;
+    box-shadow: 0px 0px 5px #aaa;
     position: relative;
 }
 
+
+
 .top-header {
     font-size: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+@media (min-width: 767px) {
+    .top-header {
+        height: 75px;
+    }
 }
 
 .top-header-logo {
     padding: .5em .3em .5em;
     margin: 0;
-    font-size: 2em;
+    font-size: 2rem;
     text-transform: capitalize;
-    color: var(--main-color-alt);
+    color: var(--main-color);
+    text-align: center;
 }
 
 .top-header-menu {
@@ -78,15 +86,36 @@ body {
 
 .top-header-menu-item {
     display: inline-block;
-    font-size: 1rem;
+    font-size: clamp(1rem, 5vw, 1.4rem);
     padding: .7em .7em;
     text-transform: capitalize;
     position: relative;
+    z-index: 2;
     overflow: hidden;
     text-decoration: none;
     color: black;
     cursor: pointer;
     transition: color var(--main-transition) ease-in-out;
+}
+
+@media (min-width: 767px) {
+    .top-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .top-header-logo {
+        font-size: 2.8em;
+    }
+
+    .top-header-menu {
+        margin-left: auto;
+    }
+
+    .top-header-menu-item {
+        font-size: 1.8rem;
+        padding: 1.5em 1.7em
+    }
 }
 
 .top-header-menu-item::after {
@@ -97,7 +126,8 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--hover-color);
-    z-index: -1;
+    z-index: -4;
+    pointer-events: none;
     transition: transform var(--main-transition) ease-in-out;
 }
 
@@ -128,20 +158,78 @@ body {
     animation-fill-mode: forwards;
 }
 
+@media (min-width: 767px) {
+    .top-header-hidden-menu-trigger:hover>.top-header-hidden-menu {
+        display: flex;
+        gap: 4rem;
+    }
+}
+
 .top-header-hidden-menu {
     display: none;
-    list-style: none;
-    padding: 0;
-    margin: 0;
     background-color: white;
     position: absolute;
     top: 100%;
     width: 100%;
-    left: 0;
+    left: 50%;
     border-top: 1px solid #eeeddd;
     border-bottom: 5px solid var(--main-color);
-    z-index: -1;
+    z-index: 20;
     opacity: 0;
+    transform: translateX(-50%);
+    border-top: 2px solid #eee;
+}
+
+@media (min-width: 768px) {
+    .top-header-hidden-menu {
+        padding: 3rem;
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .top-header-hidden-menu {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .top-header-hidden-menu {
+        width: 1180px;
+    }
+}
+
+@media (max-width: 992px) {
+    .top-header-hidden-menu-image {
+        display: none;
+    }
+}
+
+.top-header-hidden-menu-image>img {
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .top-header-hidden-menu-image>img {
+        width: 80%;
+    }
+}
+
+.top-header-hidden-menu-image {
+    align-self: center;
+    text-align: center;
+}
+
+.top-header-hidden-menu-items {
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 767px) {
+    .top-header-hidden-menu-items {
+        min-width: 250px;
+        flex: 1;
+    }
 }
 
 @keyframes top-header-hidden-menu {
@@ -158,14 +246,25 @@ body {
 
 .top-header-hidden-menu-item {
     position: relative;
-    padding: 1em .5em;
+    padding: 1.5rem;
     padding-left: 0;
     text-align: center;
     color: var(--main-color);
     display: flex;
     font-size: 1.5em;
     cursor: pointer;
+    overflow: hidden;
 
+}
+
+.top-header-hidden-menu-item:not(:last-of-type) {
+    border-bottom: 1px solid #eee;
+}
+
+@media (min-width: 767px) {
+    .top-header-hidden-menu-item {
+        font-size: 1.8em;
+    }
 }
 
 .top-header-hidden-menu-item::before {
